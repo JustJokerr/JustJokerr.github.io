@@ -1,0 +1,215 @@
+/* 背景图片及动效 */
+    /* 背景图片网上找的,这个看起来重复也不会很突兀 */
+     *{
+      user-select: none;
+      }
+      body{
+        background-image: url(../images/background.png);
+        background-position: center;
+      }
+      body::after{
+        content: '';
+        z-index: -2;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(1px) brightness(0.8) saturate(1.5) contrast(1.1);
+        /* 高斯模糊+调暗+饱和度+对比度,看起来好多了,不过每次打开貌似有点卡. */
+      }
+      /* 这段是背景下落动效 */
+      .backgroundanime{
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        display: flex;
+        align-items: start;
+      }
+      .backgroundanime span{    
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        font-size: larger;
+        width: 30px;
+        height: 30px;
+        /* 不知道为什么这里总是emoji不居中在光圈中心,反反复复调成这个参数正好是中心,但是一改又完蛋了 */
+        background-color: rgba(4, 11, 193, 0.1);
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.8vmax rgba(0, 154, 197, 0.1);
+        animation: backgroundanime linear infinite;
+        /* 匀速下落,反复播放,模拟下落,不过太丑了决定用变量控制动画时间来调整速度 */
+        animation-duration: calc(170s/var(--i));
+      }
+      /* 取偶数,主要是为了看起来不太单调 */
+      .backgroundanime span:nth-child(even){
+        background-color: rgba(86, 231, 1, 0.1);
+        box-shadow: 0 0 0 0.8vmax rgba(245, 98, 6, 0.1);
+      }
+      @keyframes backgroundanime{
+        0%{
+          box-shadow:  rgba(0, 0, 255, 0.1); transform: translateY(-10vh) scale(1);
+        }
+        50%{
+          box-shadow:  rgba(0, 255, 0, 0.1); transform: translateY(-10vh) scale(0.5);
+        }
+        100%{
+          box-shadow: rgba(255, 0, 0, 0.1); transform: translateY(100vh) scale(0.75);
+        }
+    }
+    /* 实际上代码实现的只有外面的光圈,里面那东西都是emoji  */
+      
+      /* 头部导航栏 */
+      .container {
+        width: 80%;
+        margin: auto;
+      }
+      .header {
+        background-color: rgba(26, 26, 26, 0.6);
+        color: #fff;
+        padding-top: 25px;
+        min-height: 70px;
+        border-bottom: #0066cc 3px solid;
+        border-radius:10px;
+        align-items: center;
+      }
+      .header a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        margin-right: auto;
+      }
+      .header .navigation li {
+        display: inline;
+        padding: 0 20px 0 20px;
+      }
+      .navigation{
+        list-style: none;
+        text-align: right;
+      }
+      .navigation2{
+        margin-top: 0px;
+        margin-bottom: 20px;
+        padding: 9px;
+        padding-top: 40px;
+        float: right;
+        max-width: 100px;
+        border-radius: 20px;
+        background-color: rgba(26, 26, 26, 0.2);
+        animation: navigation2-show  0.25s ease-out;
+      }
+      @keyframes navigation2-show {
+        0%{
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        100%{
+          opacity: 1;
+        }    
+      }
+  
+      .header .navigation2 li {
+        width: inherit;
+        text-align: center;
+        padding-top: 20px;
+      }
+      .header #branding h1 span {
+        color: #000000;
+        background-color: #e8491d;
+      }
+      .header .current a {
+        color: #e8491d;
+        font-weight: bold;
+      }
+      /* 类似超级列表框现行选中项的感觉 */
+      .header .navigation li a:hover{
+        color: #069a10;
+      }
+      /* 公告栏 */
+      .jumbotron {
+        background-color: rgba(159, 181, 246, 0.72);
+        color: #fff;
+        padding-top: 0%;
+        text-align: center;
+        align-items: center;
+        margin: auto;
+        width: 80%;
+        border-radius: 10px;
+      }
+  
+      /* 文章概览栏 */
+      .main {
+        padding: 20px 0; 
+      }
+      .main a{
+        text-decoration: none;
+        color: inherit;
+      }
+      .content {
+        float: left;
+        width: 70%;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        border-radius: 8px;
+      }
+      .content h2 {
+        color: #0066cc;
+        border-bottom: #0066cc 4px solid;
+        padding-bottom: 20px;
+      }
+      .content p {
+        margin-bottom: 20px;
+      }
+      .content-authorAndtime{
+        float: inline-end;
+        font-size: 1rem;
+        color: #656565;
+      }
+      .post{
+        position: relative;
+      }
+      .post img{
+        opacity: 1;
+        box-sizing: border-box;
+        position: absolute;
+        max-height: 120px;
+        right: 0;
+        top: -10px;
+        border-radius: 8%;
+        transform-style: preserve-3d;
+        transition: opacity 0.1s ease-out;
+        animation: post-img-show 0.5s ease-out;
+      }
+      @keyframes post-img-show {
+        0%{
+          opacity: 0;
+          transform: translatex(-20vw);
+        }
+        100%{
+          opacity: 1;
+        }    
+      }
+      .sidebar {
+        align-items: center;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+        border-radius: 30px;
+        width: 15vw; 
+        max-width: 120px;
+        z-index: 2;
+        top: 70vh;
+        float: right;
+        min-width: 130px;
+      }
+  
+      .clear {
+        clear: both;
+      }  

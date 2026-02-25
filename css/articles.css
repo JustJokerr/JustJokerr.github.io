@@ -1,0 +1,117 @@
+/* 这是封面卡片的动效 */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* 调完大小操作起来方便很多 */
+}
+body{
+    justify-content: center;
+    position: relative;    
+}
+.wrapper{
+    position: relative;
+    height: 35VH;
+    width: 100%;
+    margin-top: 5vh;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 800px;
+    /* 3d视角 */
+}
+.card{
+    position: absolute;
+    height: inherit;
+    width: 90%;
+    /* background-color: blue; */
+    text-align: center;
+    transition: 0.2s ease-out;
+    /* 0.2s变化,由慢到快,看起来还行,不过感觉还是没什么翻牌那样的感觉 */
+    transition-delay: 0.3s;
+}
+.wrapper:hover .card{
+    transform: translate(8vw,1vh)  rotatey(30deg);
+    transform-origin: bottom;
+    filter: brightness(70%) blur(1.5px);
+    height: 115%;
+    /* transform: translate(-10%); */
+    transition-delay: 0.3s;
+}
+.card img{
+    height: inherit;
+    width: inherit;
+    border: 5px solid #de8c12;
+    object-fit: cover;
+}
+.card p{
+    position: absolute;
+    bottom: 8%;
+    right: 15%;
+    font-size: 2.5rem;
+    color: #fe9400;
+    letter-spacing: 8px;
+}
+.popup{
+    position: relative;
+    height: inherit;
+    width: inherit;
+    margin-right:5VW ;
+}
+.popup img{
+    position: absolute;
+    height: 82.5%;
+    top: 50%;
+    right: 12VW;
+    opacity: 0;
+    /* 用透明度来控制可视,用display(none)不知道为什么又有问题 */
+    transform: translate(8VW,-50%)scale(1.2);
+    transition: 0.2s ease-out;
+    transition-delay: 0.3s;
+}
+.wrapper:hover .popup img{
+    transform: translate(8VW,-50%)scale(2.2);
+    transition-delay: 0.3s;
+    opacity: 1;
+}
+
+/* 这是文章主题内容的效果 */
+.main{
+    display: block;
+    position: relative;
+    justify-content: center;
+    top: 6vh;
+    align-items: center;
+}
+.titlec{
+    margin: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    width: 40vw;
+    border-bottom: #ff6200 6px solid;
+}
+.title{
+    text-transform: uppercase;
+    color: rgba(187, 235, 15, 0.998);
+    text-shadow:0 0 1vw rgb(6, 194, 19);
+}
+.author{
+    display: inline;
+    font-size: 1rem;
+    color: rgb(200, 200, 200);
+}
+.contentc{
+    margin: auto;
+    padding: 2vh;
+    width: 70vw;
+    background-color: rgb(239, 239, 239,0.4);
+    border-radius: 3vmax;
+    text-shadow: 0 0 0.2vw black;
+    font-size: 1.1em;
+}
+.contentc::after{
+    background-color: inherit;
+    filter: blur(2px);
+}
