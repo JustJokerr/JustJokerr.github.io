@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JokerBlog</title>
+  <!-- 1. 原有样式（优先加载） -->
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- 图标 -->
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- 1. Emoji动效容器 -->
+  <div class="backgroundanime">
+    <span style="--i:3">📀</span>
+    <span style="--i:28">🌙</span>
+    <span style="--i:20">⭐</span>
+    <span style="--i:40">🐸</span>
+    <span style="--i:17">🎃</span>
+    <span style="--i:7">⭐</span>
+    <span style="--i:10">🔥</span>
+    <span style="--i:13">🌸</span>
+    <span style="--i:4">⭐</span>
+    <span style="--i:36">🌰</span>
+    <span style="--i:23">🌟</span>
+    <span style="--i:34">🍪</span>
+    <span style="--i:26">⭐</span>
+    <span style="--i:15">⭐</span>
+    <span style="--i:33">🌺</span>
+    <span style="--i:25">💧</span>
+    <span style="--i:16">⭐</span>
+    <span style="--i:32">🍯</span>
+    <span style="--i:42">🌟</span>
+    <span style="--i:3">⭐</span>
+    <span style="--i:28">🌠</span>
+    <span style="--i:20">😺</span>
+    <span style="--i:40">⭐</span>
+    <span style="--i:17">⭐</span>
+    <span style="--i:7">🎁</span>
+    <span style="--i:10">🌸</span>
+    <span style="--i:13">⭐</span>
+    <span style="--i:4">🍎</span>
+    <span style="--i:36">✨</span>
+    <span style="--i:23">🍥</span>
+    <span style="--i:34">⭐</span>
+    <span style="--i:26">💧</span>
+    <span style="--i:15">⭐</span>
+    <span style="--i:33">🍥</span>
+    <span style="--i:25">⭐</span>
+    <span style="--i:16">👻</span>
+    <span style="--i:32">⭐</span>
+    <span style="--i:42">🌸</span>
+    <span style="--i:3">⭐</span>
+    <span style="--i:28">🌙</span>
+    <span style="--i:20">⭐</span>
+    <span style="--i:40">🌕</span>
+    <span style="--i:17">⭐</span>
+    <span style="--i:7">⭐</span>
+    <span style="--i:10">🔥</span>
+    <span style="--i:13">🌸</span>
+    <span style="--i:4">⭐</span>
+    <span style="--i:36">🔥</span>
+    <span style="--i:23">🌟</span>
+    <span style="--i:34">💣</span>
+    <span style="--i:26">⭐</span>
+    <span style="--i:15">💡</span>
+    <span style="--i:33">⭐</span>
+    <span style="--i:25">🍑</span>
+    <span style="--i:16">⭐</span>
+    <span style="--i:32">⚽</span>
+    <span style="--i:42">🌟</span>
+    <span style="--i:3">💎</span>
+    <span style="--i:28">⭐</span>
+    <span style="--i:20">😺</span>
+    <span style="--i:40">⭐</span>
+    <span style="--i:17">🔆</span>
+    <span style="--i:7">🗯</span>
+    <span style="--i:10">🌸</span>
+    <span style="--i:13">⭐</span>
+    <span style="--i:4">✨</span>
+    <span style="--i:36">🍅</span>
+    <span style="--i:23">🍥</span>
+    <span style="--i:34">⭐</span>
+    <span style="--i:26">🎆</span>
+    <span style="--i:15">⭐</span>
+    <span style="--i:33">🍥</span>
+    <span style="--i:25">⭐</span>
+    <span style="--i:16">👻</span>
+    <span style="--i:32">⭐</span>
+    <span style="--i:42">🌸</span>
+  </div>
+
+  <!-- 2. 封面区域 -->
+<header class="header scroll-header">
+    <!-- 封面背景图 -->
+    <div class="header-bg-img" loading="lazy"></div>
+    
+    <!-- 3D头像容器（特效核心） -->
+    <div class="avatar-container" id="avatarContainer">
+    <img src="./images/avatar.jpg" alt="Just.Joker头像" class="avatar-img" loading="lazy">
+    </div>
+    <!-- 文字容器（打字机特效） -->
+    <div class="avatar-text-container" id="avatarTextContainer">
+      <p class="welcome-text" id="welcomeText">欢迎来到我的个人主页</p>
+      <h3 class="name-text" id="nameText">Just.Joker</h3>
+    </div>
+    
+    <!-- 气泡容器（气泡特效） -->
+    <div class="bubble-container" id="bubbleContainer"></div>
+
+    <!-- 通用导航栏容器（仅占位，不影响特效） -->
+    <div id="common-nav-container"></div>
+
+    <!-- 音浪式海浪特效 -->
+    <div class="wave-effect"></div>
+  </header>
+
+  <!-- 公告栏 -->
+  <section class="jumbotron">
+    <div class="container">
+      <h2 >>❗--公告--❗< </h2>
+    </div>
+  </section>
+
+  <!-- 侧边栏 -->
+  <div class="sidebar" id="aboutme">
+    <h3>🔎关于我</h3>
+    <p>-Just.Joker- </p>
+    <hr>
+    <p>喜欢玩抽象🆘</p>
+    <p>没啥不喜欢✅</p>
+  </div>
+
+  <!-- 文章列表 -->
+<section class="main" id="articles">
+  <!-- 最新文章区域 -->
+  <div class="latest-article-header">
+    <h2>🔥 最新文章</h2>
+    <p class="latest-article-subtitle">最近更新的内容</p>
+  </div>
+  
+  <!-- 最新文章卡片 -->
+  <div class="latest-article-container">
+    <div class="latest-article-card">
+      <div class="latest-article-left">
+        <div class="latest-article-header-inner">
+          <span class="latest-badge">NEW</span>
+          <h3 class="latest-article-title">最新文章标题</h3>
+          <span class="latest-article-meta">2024.10.20 · By Just.Joker</span>
+        </div>
+        <p class="latest-article-excerpt">
+          这里放最新文章的详细摘要，可以比普通文章长一些，展示更多内容，吸引用户点击阅读全文...
+        </p>
+        <div class="latest-article-footer">
+          <a target="_blank" href="./html/latest.html" class="latest-article-read-more">📃 阅读全文</a>
+        </div>
+      </div>
+      <div class="latest-article-right">
+        <div class="latest-article-img-wrapper">
+          <img class="latest-article-img" src="./images/Just.Joker2.png" alt="最新文章预览图">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 我的文章区域 -->
+  <div class="articles-header">
+    <h2>📝 我的文章</h2>
+    <p class="articles-subtitle">记录学习与分享的点滴</p>
+  </div>
+  
+  <!-- 其他文章卡片容器 -->
+  <div class="articles-container">
+    <!-- 其他文章卡片1 -->
+    <div class="article-card">
+      <div class="article-card-header">
+        <h3 class="article-title">其他文章标题1</h3>
+        <span class="article-meta">2024.10.15 · By Just.Joker</span>
+      </div>
+      <div class="article-card-body">
+        <p class="article-excerpt">awa文章摘要awa - 这里可以放文章的核心内容摘要，控制长度避免排版混乱</p>
+        <div class="article-img-wrapper">
+          <img class="article-preview-img" src="./images/Just.Joker2.png" alt="文章预览图">
+        </div>
+      </div>
+      <div class="article-card-footer">
+        <a target="_blank" href="./html/article1.html" class="article-read-more">📃 阅读全文</a>
+      </div>
+    </div>
+
+    <!-- 其他文章卡片2 -->
+    <div class="article-card">
+      <div class="article-card-header">
+        <h3 class="article-title">其他文章标题2</h3>
+        <span class="article-meta">2024.10.10 · By Just.Joker</span>
+      </div>
+      <div class="article-card-body">
+        <p class="article-excerpt">awa文章摘要awa - 这里可以放文章的核心内容摘要，控制长度避免排版混乱</p>
+        <div class="article-img-wrapper">
+          <img class="article-preview-img" src="./images/Just.Joker2.png" alt="文章预览图">
+        </div>
+      </div>
+      <div class="article-card-footer">
+        <a target="_blank" href="./html/article2.html" class="article-read-more">📃 阅读全文</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div class="clear"></div>
+
+  <!-- JS加载区域（核心调整：导航栏HTML加载后立即绑定事件） -->
+  <!-- 1. 原有特效JS（优先加载，保证特效不中断） -->
+  <script src="./js/index.js"></script>
+  <!-- 2. 加载导航栏组件（复用型） -->
+<script>
+  window.addEventListener('load', function() {
+    // 加载导航栏HTML
+    fetch('./components/nav-header.html')
+      .then(response => {
+        if (!response.ok) throw new Error('导航栏HTML加载失败');
+        return response.text();
+      })
+      .then(html => {
+        // 插入导航栏
+        document.getElementById('common-nav-container').innerHTML = html;
+        console.log('导航栏HTML加载成功');
+        
+        // 加载导航栏CSS（确保样式生效）
+        const navStyle = document.createElement('link');
+        navStyle.rel = 'stylesheet';
+        navStyle.href = './components/nav-common.css';
+        document.head.appendChild(navStyle);
+        
+        // 加载导航栏JS并初始化
+        const navScript = document.createElement('script');
+        navScript.src = './components/nav-common.js';
+        navScript.onload = function() {
+          console.log('导航栏JS加载成功，初始化交互');
+          initNav(); // 执行初始化函数（核心）
+        };
+        document.body.appendChild(navScript);
+      })
+      .catch(error => {
+        console.warn('导航栏加载失败：', error);
+        // 备用导航（保证功能）
+        document.getElementById('common-nav-container').innerHTML = `
+          <header class="common-nav-header">
+            <div class="container">
+              <div id="branding">
+                <img src="./images/avatar.jpg" width="50px" height="50px" style="border-radius: 50%;">
+                <h1 style="font-size:30px;color:#fff;margin:0;">Joker <span style="background:#e8491d;color:#000;">Blog</span></h1>
+              </div>
+              <ul style="list-style:none;margin:0 0 0 auto;display:flex;gap:20px;">
+                <li><a href="./index.html" style="color:#fff;text-decoration:none;">首页</a></li>
+                <li><a href="./html/showcase.html" style="color:#fff;text-decoration:none;">展示区</a></li>
+                <li><a href="#articles" style="color:#fff;text-decoration:none;">文章</a></li>
+              </ul>
+            </div>
+          </header>
+        `;
+      });
+  });
+</script>
+<!-- ===== 新增：加载通用页脚 ===== -->
+<script>
+    window.addEventListener('load', function() {
+        // 加载页脚HTML
+        fetch('./components/footer-common.html')
+            .then(response => {
+                if (!response.ok) throw new Error('页脚HTML加载失败');
+                return response.text();
+            })
+            .then(html => {
+                // 把页脚添加到body末尾（或指定容器）
+                const footerContainer = document.createElement('div');
+                footerContainer.innerHTML = html;
+                document.body.appendChild(footerContainer);
+                
+                // 加载页脚CSS
+                const footerStyle = document.createElement('link');
+                footerStyle.rel = 'stylesheet';
+                footerStyle.href = './components/footer-common.css';
+                document.head.appendChild(footerStyle);
+                
+                // 加载页脚JS并初始化
+                const footerScript = document.createElement('script');
+                footerScript.src = './components/footer-common.js';
+                footerScript.onload = function() {
+                    initFooter(); // 执行页脚初始化
+                };
+                document.body.appendChild(footerScript);
+            })
+            .catch(error => {
+                console.warn('页脚加载失败：', error);
+                // 备用页脚
+                const footer = document.createElement('footer');
+                footer.className = 'common-footer';
+                footer.innerHTML = `
+                    <p class="hitokoto-text">人生如逆旅，我亦是行人。 —— 苏轼</p>
+                    <p class="copyright-text">© 2026 Just.Joker | 个人博客展示平台</p>
+                `;
+                document.body.appendChild(footer);
+                // 加载备用样式
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = './components/footer-common.css';
+                document.head.appendChild(link);
+            });
+    });
+</script>
+</body>
+</html>
