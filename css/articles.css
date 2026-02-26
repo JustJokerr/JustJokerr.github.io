@@ -1,26 +1,25 @@
-/* ========== 全局重置 + 基础布局（原内联样式迁移） ========== */
+/* ========== 全局样式重置（强化弹性布局，禁止压缩关键容器） ========== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* 调完大小操作起来方便很多 */
+    font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
 }
+
 
 /* 基础布局：弹性布局确保页脚贴底 + 背景样式 */
 html, body {
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 300vh;
     /* 原内联的背景样式 */
     background-image: url(../images/paperbackground.png);
+    background-position: center;
+    background-attachment: fixed;
     background-size: cover;
-    position: relative;
-    justify-content: center;
-}
 
+}
 /* 背景滤镜（原内联的body::after） */
 body::after {
     content: '';
@@ -36,17 +35,18 @@ body::after {
 /* ========== 封面卡片动效（原有样式保留） ========== */
 .wrapper {
     position: relative;
-    height: 35VH;
+    height: 50vh;
     width: 100%;
-    margin-top: 5vh;
-    /* background-color: red; */
+    margin-top: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     perspective: 800px;
-    /* 3d视角 */
-    flex-shrink: 0 !important; /* 不影响弹性布局 */
-    padding: 0 20px;
+    /* 禁止封面容器被压缩 */
+    flex-shrink: 0 ;
+    padding: 0;
+    /* 最小高度保护，窗口小时不会挤扁 */
+    min-height: 300px;
 }
 
 .card {
@@ -110,19 +110,21 @@ body::after {
     opacity: 1;
 }
 
-/* ========== 文章主题内容效果（原有样式保留 + 弹性布局适配） ========== */
+/* ========== 主体内容：最小高度+禁止压缩，避免被页脚覆盖 ========== */
 .main {
     display: block;
     position: relative;
     justify-content: center;
     top: 6vh;
     align-items: center;
-    /* 核心：占满剩余空间，推页脚到底部 */
-    flex: 1 0 auto !important;
+    flex: 1 0 auto ; /* 占满剩余空间，但0表示不收缩 */
     padding: 0 20px;
     margin-top: 20px;
+    /* 核心：主体最小高度，窗口小时有足够空间，页脚不覆盖 */
+    min-height: 300px;
+    /* 确保主体在页脚上方，不被覆盖 */
+    z-index: 10;
 }
-
 .titlec {
     margin: auto;
     font-size: 2rem;
@@ -163,20 +165,3 @@ body::after {
     filter: blur(2px);
 }
 
-/* ========== 通用页脚适配（强化贴底，如需全局可移到footer-common.css） ========== */
-.common-footer {
-    padding: 20px;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    flex-shrink: 0 !important;
-    width: 100% !important;
-    margin-top: auto !important; /* 强制推到底部 */
-    position: relative !important;
-    bottom: 0 !important;
-}
