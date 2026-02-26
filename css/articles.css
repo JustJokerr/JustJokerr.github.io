@@ -1,15 +1,40 @@
-/* 这是封面卡片的动效 */
-*{
+/* ========== 全局重置 + 基础布局（原内联样式迁移） ========== */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     /* 调完大小操作起来方便很多 */
 }
-body{
+
+/* 基础布局：弹性布局确保页脚贴底 + 背景样式 */
+html, body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    /* 原内联的背景样式 */
+    background-image: url(../images/paperbackground.png);
+    background-size: cover;
+    position: relative;
     justify-content: center;
-    position: relative;    
 }
-.wrapper{
+
+/* 背景滤镜（原内联的body::after） */
+body::after {
+    content: '';
+    z-index: -2;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: inherit;
+    filter: saturate(1.3) contrast(1.1) brightness(0.68);
+}
+/* ========== 封面卡片动效（原有样式保留） ========== */
+.wrapper {
     position: relative;
     height: 35VH;
     width: 100%;
@@ -20,8 +45,11 @@ body{
     justify-content: center;
     perspective: 800px;
     /* 3d视角 */
+    flex-shrink: 0 !important; /* 不影响弹性布局 */
+    padding: 0 20px;
 }
-.card{
+
+.card {
     position: absolute;
     height: inherit;
     width: 90%;
@@ -31,21 +59,24 @@ body{
     /* 0.2s变化,由慢到快,看起来还行,不过感觉还是没什么翻牌那样的感觉 */
     transition-delay: 0.3s;
 }
-.wrapper:hover .card{
-    transform: translate(8vw,1vh)  rotatey(30deg);
+
+.wrapper:hover .card {
+    transform: translate(8vw, 1vh) rotatey(30deg);
     transform-origin: bottom;
     filter: brightness(70%) blur(1.5px);
     height: 115%;
     /* transform: translate(-10%); */
     transition-delay: 0.3s;
 }
-.card img{
+
+.card img {
     height: inherit;
     width: inherit;
     border: 5px solid #de8c12;
     object-fit: cover;
 }
-.card p{
+
+.card p {
     position: absolute;
     bottom: 8%;
     right: 15%;
@@ -53,38 +84,46 @@ body{
     color: #fe9400;
     letter-spacing: 8px;
 }
-.popup{
+
+.popup {
     position: relative;
     height: inherit;
     width: inherit;
-    margin-right:5VW ;
+    margin-right: 5VW;
 }
-.popup img{
+
+.popup img {
     position: absolute;
     height: 82.5%;
     top: 50%;
     right: 12VW;
     opacity: 0;
     /* 用透明度来控制可视,用display(none)不知道为什么又有问题 */
-    transform: translate(8VW,-50%)scale(1.2);
+    transform: translate(8VW, -50%) scale(1.2);
     transition: 0.2s ease-out;
     transition-delay: 0.3s;
 }
-.wrapper:hover .popup img{
-    transform: translate(8VW,-50%)scale(2.2);
+
+.wrapper:hover .popup img {
+    transform: translate(8VW, -50%) scale(2.2);
     transition-delay: 0.3s;
     opacity: 1;
 }
 
-/* 这是文章主题内容的效果 */
-.main{
+/* ========== 文章主题内容效果（原有样式保留 + 弹性布局适配） ========== */
+.main {
     display: block;
     position: relative;
     justify-content: center;
     top: 6vh;
     align-items: center;
+    /* 核心：占满剩余空间，推页脚到底部 */
+    flex: 1 0 auto !important;
+    padding: 0 20px;
+    margin-top: 20px;
 }
-.titlec{
+
+.titlec {
     margin: auto;
     font-size: 2rem;
     font-weight: bold;
@@ -92,26 +131,52 @@ body{
     width: 40vw;
     border-bottom: #ff6200 6px solid;
 }
-.title{
+
+.title {
     text-transform: uppercase;
     color: rgba(187, 235, 15, 0.998);
-    text-shadow:0 0 1vw rgb(6, 194, 19);
+    text-shadow: 0 0 1vw rgb(6, 194, 19);
 }
-.author{
+
+.author {
     display: inline;
     font-size: 1rem;
     color: rgb(200, 200, 200);
 }
-.contentc{
+
+.contentc {
     margin: auto;
     padding: 2vh;
     width: 70vw;
-    background-color: rgb(239, 239, 239,0.4);
+    background-color: rgb(239, 239, 239, 0.4);
     border-radius: 3vmax;
     text-shadow: 0 0 0.2vw black;
     font-size: 1.1em;
 }
-.contentc::after{
+
+.contentc p {
+    text-align: center; /* 原内联的p居中样式迁移 */
+}
+
+.contentc::after {
     background-color: inherit;
     filter: blur(2px);
+}
+
+/* ========== 通用页脚适配（强化贴底，如需全局可移到footer-common.css） ========== */
+.common-footer {
+    padding: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    flex-shrink: 0 !important;
+    width: 100% !important;
+    margin-top: auto !important; /* 强制推到底部 */
+    position: relative !important;
+    bottom: 0 !important;
 }

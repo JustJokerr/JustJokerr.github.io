@@ -1,0 +1,164 @@
+/* 导航栏核心样式 - 复用型 */
+/* 全局导航栏容器样式（所有页面统一） */
+#common-nav-container {
+    padding: 0; /* 移除默认内边距，确保与页面边缘对齐 */
+    max-width: 90%;
+    min-width: 80%;
+    margin: 0 auto;
+    /* 移除任何背景色，避免黑色块 */
+    background: transparent !important;
+}
+
+
+.common-nav-header {
+  background-color: rgba(40, 40, 40, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  height: 70px;
+  border-bottom: #0066cc 3px solid;
+  border-radius: 10px;
+  width: 100%;
+  position: relative;
+  z-index: 999;
+  padding: 0 20px;
+  margin: 20px 0;
+  box-sizing: border-box;
+}
+
+.common-nav-header .container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* 头像+标题 */
+#branding {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#branding img {
+  border-radius: 50%;
+}
+#branding h1 {
+  font-size: 30px;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+#branding h1 span {
+  font-size: 30px;
+  background: #e8491d;
+  color: #000;
+}
+
+/* PC端菜单 - 横向 */
+#navigation1 {
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+#navigation1 li {
+  display: inline-block;
+  padding: 0 5px;
+}
+#navigation1 li.current a {
+  color: #e8491d;
+  font-weight: bold;
+}
+#navigation1 a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+#navigation1 a:hover {
+  color: #069a10;
+  font-weight: bold;
+}
+
+/* 移动端书本图标 - 垂直居中 */
+#headericon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 35px;
+  cursor: pointer;
+  z-index: 9999;
+  display: none;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 移动端下拉菜单 - 竖向 */
+#navigation2 {
+  list-style: none;
+  position: absolute;
+  right: 20px;
+  top: 80px;
+  background-color: rgba(40, 40, 40, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  z-index: 9998;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+#navigation2 li {
+  display: block;
+  margin: 5px;
+  padding: 0;
+}
+#navigation2 a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  white-space: nowrap;
+}
+#navigation2 a:hover {
+  color: #069a10;
+  font-weight: bold;
+}
+
+
+/* 在原有#headericon样式后，新增以下高优先级样式 */
+/* 大屏下强制隐藏书本图标（优先级最高，覆盖所有情况） */
+@media (min-width: 801px) {
+  #headericon {
+    display: none ;
+    visibility: hidden ;
+    opacity: 0 ;
+  }
+  /* 固化PC菜单间距（避免加载时间距错乱） */
+  #navigation1 {
+    align-items: center ;
+    margin: 0 0 0 auto ;
+  }
+}
+
+/* 移动端样式固化（避免加载时显示异常） */
+@media (max-width: 800px) {
+  #navigation1 {
+    display: none ;
+  }
+  #headericon {
+    display: block ;
+    gap: 0 ;
+    margin: 0 ;
+  }
+}
