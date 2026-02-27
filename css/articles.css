@@ -14,7 +14,7 @@ html, body {
     flex-direction: column;
     min-height: 300vh;
     /* 原内联的背景样式 */
-    background-image: url(../images/paperbackground.png);
+    background-image: url(../images/background.png);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;

@@ -621,12 +621,14 @@ body.scroll-down .backgroundanime {
 
 /* 文章卡片容器 - 网格布局 */
 .articles-container {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
+  justify-content: center
 }
 
 /* ========== 文章卡片（纯毛玻璃效果，无白色底色） ========== */
