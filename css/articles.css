@@ -6,18 +6,29 @@
     font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
 }
 
-
+/* ========== 页面背景（固定background.png） ========== */
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* 正确路径：匹配你的文件结构 */
+    background: url("../images/background.png") no-repeat center center;
+    background-size: cover;
+    filter: brightness(0.8); /* 背景稍暗，突出内容 */
+    z-index: -1;
+}
 /* 基础布局：弹性布局确保页脚贴底 + 背景样式 */
 html, body {
     height: 100%;
     display: flex;
+    position: fixed;
     flex-direction: column;
     min-height: 300vh;
     /* 原内联的背景样式 */
-    background: url(../images/background.png) no-repeat center center fixed;
-    background-size: cover;
-
 }
+
 /* 背景滤镜（原内联的body::after） */
 body::after {
     content: '';
@@ -27,7 +38,6 @@ body::after {
     right: 0;
     left: 0;
     bottom: 0;
-    background: inherit;
     filter: saturate(1.3) contrast(1.1) brightness(0.68);
 }
 /* ========== 封面卡片动效（原有样式保留） ========== */

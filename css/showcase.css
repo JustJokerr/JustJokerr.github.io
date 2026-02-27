@@ -23,7 +23,7 @@ html, body {
     width: 100vw;
     height: 100vh;
     /* 正确路径：匹配你的文件结构 */
-    background: url("../images/background.png") no-repeat center center fixed;
+    background: url("../images/background.png") no-repeat center center;
     background-size: cover;
     filter: brightness(0.8); /* 背景稍暗，突出内容 */
     z-index: -1;
@@ -240,7 +240,7 @@ html, body {
 .project-link {
     padding: 12px 30px;
     background: rgba(0, 123, 255, 0.3);
-    color: #fff !important;
+    color: #fff ;
     text-decoration: none;
     border-radius: 10px;
     font-size: 16px;

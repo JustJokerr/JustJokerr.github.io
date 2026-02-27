@@ -7,12 +7,12 @@
 }
 
 body {
-  background: url(../images/background.png) no-repeat center center fixed;
-  background-size: cover;
+  position: fixed;
   min-height: 2000px;
   overflow-x: hidden;
   position: relative;
 }
+/* ========== 页面背景（固定background.png） ========== */
 
 body::after {
   content: '';
@@ -25,7 +25,18 @@ body::after {
   background: inherit;
   filter: blur(1px) brightness(0.8) saturate(1.5) contrast(1.1);
 }
-
+.page-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* 正确路径：匹配你的文件结构 */
+    background: url("../images/background.png") no-repeat center center;
+    background-size: cover;
+    filter: brightness(0.8); /* 背景稍暗，突出内容 */
+    z-index: -1;
+}
 /* 1. Emoji动效 */
 .backgroundanime {
   position: fixed;
