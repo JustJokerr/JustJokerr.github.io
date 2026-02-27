@@ -23,7 +23,6 @@
 html, body {
     height: 100%;
     display: flex;
-    position: fixed;
     flex-direction: column;
     min-height: 300vh;
     /* 原内联的背景样式 */

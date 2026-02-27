@@ -7,7 +7,6 @@
 }
 
 body {
-  position: fixed;
   min-height: 2000px;
   overflow-x: hidden;
   position: relative;
